@@ -1,0 +1,25 @@
+extends layout
+
+block content 
+    h1 #{item.name} - $ #{item.price}
+    p
+        strong Category:   
+        a(href=item.category.url) #{item.category.name}
+        if item_instance.length > 0
+            each instance in item_instance
+                p Stock Status: 
+                    if instance.stock === 0
+                        | No stock
+                    else if instance.stock > 0 && instance.stock < 5
+                        | Low stock
+                    else
+                        | Available stock
+        if item.images && item.images.length > 0
+            each image in item.images
+                img(src=image, alt='Item Image')
+        hr
+        p
+            a(href='/catalog/items/' + item._id + '/update') Update Item
+        p
+            a(href='/catalog/items/' + item._id + '/delete') Delete Item          
+       

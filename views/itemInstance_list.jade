@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+
+  if itemInstance_list.length
+    ul
+      each val in itemInstance_list
+        li
+          a(href=val.url) #{val.item.name} : #{val.imprint} -&nbsp;
+          span Stock: #{val.stock} -&nbsp;
+          if val.stock > 0
+            span.text-success In Stock
+          else
+            span.text-danger Out of Stock
+          if val.status != 'Available'
+           
+
+  else
+    p There are no products in this store.

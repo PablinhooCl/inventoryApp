@@ -1,0 +1,22 @@
+extends layout 
+
+block content 
+    h1 Category: #{category.name}
+
+    div(style= 'margin-left:20px;margin-top:20px')
+        h4 Items 
+        if category_items.length
+            dl
+                each item in category_items
+                    dt 
+                          a(href= item.url) #{item.name}
+                          span(style='margin-left: 5px') - $#{item.price}
+            hr
+            p
+                a(href='/catalog/categories/' + category._id + '/delete') Delete category                            
+                     
+        else
+            p This Category has no items
+            hr
+            p
+                a(href='/catalog/categories/' + category._id + '/delete') Delete category    
